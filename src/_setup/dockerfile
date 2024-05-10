@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/mssql/server:2022-latest as db
+
+# Settings
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=P@ssw0rd!
+
+# add the test databases
+WORKDIR /app
+COPY ./init.sql .
+
+# Hack to wait for 30 seconds
+RUN /opt/mssql/bin/sqlservr & sleep 30 && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "P@ssw0rd!" -i /app/init.sql
+
+EXPOSE 1433
