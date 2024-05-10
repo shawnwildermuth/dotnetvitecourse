@@ -41,4 +41,5 @@
     "vite-plugin-pages": "^0.32.1",
     "vue-tsc": "^2.0.11"
   }
+, "-vs-binding":{"ProjectOpened":["dev"]}
 }

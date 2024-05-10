@@ -48,18 +48,18 @@ function purchase(product: Product) {
 <template>
   <div>
     <product-modal ref="productModal" />
-    <div class="flex justify-end my-2">
-      <select class="select select-xs select-primary mr-1" ref="categorySelect" @change="loadPage(1)">
+    <div class="flex my-2 justify-end">
+      <select class="select select-xs select-primary mr-1 w-fit" ref="categorySelect" @change="loadPage(1)">
         <option value="0" selected>All</option>
         <option v-for="c in catalogStore.categories" :value="c.id">{{ c.name }}</option>
       </select>
     </div>
-    <div class="grid gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-6">
+    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
       <div v-for="p in catalogStore.products"
         class="card card-compact bg-base-100 shadow-xl">
-        <figure><img :src="p.imageUrl!" :alt="p.title" /></figure>
+        <figure @click="purchase(p)" class="hover:cursor-pointer"><img :src="p.imageUrl!" :alt="p.title" /></figure>
         <div class="card-body">
-          <h2 class="card-title">{{ p.title }}</h2>
+          <h2 class="card-title"><button @click="purchase(p)">{{ p.title }}</button></h2>
           <div class="flex flex-wrap gap-1 text-white">
             <div class="badge badge-ghost">{{ p.category?.name }}</div>
             <div class="badge badge-ghost">{{ p.color }}</div>

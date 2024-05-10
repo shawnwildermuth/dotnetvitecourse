@@ -3,7 +3,7 @@ import axios, { type Axios } from "axios";
 
 console.log(import.meta.env);
 const instance: Axios = axios.create({
-  baseURL: import.meta.env.VITE_APP_URL ?? "http://localhost:5001"
+  baseURL: "http://localhost:8080"
 });
 
 async function get<T>(url: string) {

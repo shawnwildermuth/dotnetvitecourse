@@ -1,7 +1,7 @@
 import type { Address, Order, OrderItem, Payment } from '@/models';
 import { createEmptyOrder } from '@/models/Order';
 import { defineStore } from 'pinia'
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import { useStore } from '.';
 import { useHttp } from '@/composables/http';
 
@@ -76,6 +76,7 @@ async function processOrder() {
   const result = await http.post("/api/orders", order.value);
   if (result) {
     order.value = undefined;
+    items.value.splice(0);
   }
 }
 
